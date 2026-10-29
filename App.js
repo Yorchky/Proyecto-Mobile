@@ -1,19 +1,19 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Formulario from './src/components/Formulario';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Formulario />
+      <StatusBar style="auto" />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    paddingTop: 100,
+    backgroundColor: '#fff',
   },
 });
