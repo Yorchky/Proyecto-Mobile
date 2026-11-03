@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import Formulario from './src/components/Formulario';
+import Index from './src/components/Formulario';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Formulario />
+      <Index />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
