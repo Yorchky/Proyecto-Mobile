@@ -1,94 +1,57 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Picker from '@react-native-picker/picker';
+import { useState } from "react";
+import { View, Text, Button } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
-export default function Formulario() {
-  const [mensaje, setMensaje] = useState(null);
+export default function Index() {
+  // Estado para guardar la moneda seleccionada
+  const [moneda, setMoneda] = useState("");
 
-  const handleCotizar = () => {
-    setMensaje('Formulario creado');
+  // Estado para guardar la criptomoneda seleccionada
+  const [criptomoneda, setCriptomoneda] = useState("");
+
+  // Estado para mostrar el mensaje del botón Cotizar
+  const [mensaje, setMensaje] = useState("");
+
+  // Función que se ejecuta al presionar Cotizar
+  const cotizar = () => {
+    setMensaje("Formulario creado");
   };
 
   return (
-    <View style={styles.formulario}>
-      <View style={styles.campo}>
-        <Text style={styles.label}>Moneda</Text>
-        <Picker
-          style={styles.picker}
-          selectedValue=""
-          onValueChange={() => {}}
-        >
-          <Picker.Item label="Seleccione" value="" />
-          <Picker.Item label="Dolar USD" value="USD" />
-          <Picker.Item label="Peso Mexicano MXN" value="MXN" />
-          <Picker.Item label="Euro EUR" value="EUR" />
-          <Picker.Item label="Libra Esterlina GBP" value="GBP" />
-        </Picker>
-      </View>
+    <View>
+      <Text>Moneda</Text>
 
-      <View style={styles.campo}>
-        <Text style={styles.label}>Criptomoneda</Text>
-        <Picker
-          style={styles.picker}
-          selectedValue=""
-          onValueChange={() => {}}
-        >
-          <Picker.Item label="Seleccione" value="" />
-          <Picker.Item label="Bitcoin BTC" value="BTC" />
-          <Picker.Item label="Ethereum ETH" value="ETH" />
-          <Picker.Item label="Litecoin LTC" value="LTC" />
-          <Picker.Item label="Ripple XRP" value="XRP" />
-        </Picker>
-      </View>
+      <Picker
+        selectedValue={moneda}
+        onValueChange={(valor) => setMoneda(valor)}
+      >
+        <Picker.Item label="Seleccione una moneda" value="" />
+        <Picker.Item label="Dólar (USD)" value="USD" />
+        <Picker.Item label="Peso Mexicano (MXN)" value="MXN" />
+        <Picker.Item label="Euro (EUR)" value="EUR" />
+        <Picker.Item label="Libra Esterlina (GBP)" value="GBP" />
+      </Picker>
 
-      <TouchableOpacity style={styles.btnCotizar} onPress={handleCotizar}>
-        <Text style={styles.btnText}>Cotizar</Text>
-      </TouchableOpacity>
+      <Text>Criptomoneda</Text>
 
-      {mensaje && <Text style={styles.mensaje}>{mensaje}</Text>}
+      <Picker
+        selectedValue={criptomoneda}
+        onValueChange={(valor) => setCriptomoneda(valor)}
+      >
+        <Picker.Item
+          label="Seleccione una criptomoneda"
+          value=""
+        />
+        <Picker.Item label="Bitcoin (BTC)" value="BTC" />
+        <Picker.Item label="Ethereum (ETH)" value="ETH" />
+        <Picker.Item label="Litecoin (LTC)" value="LTC" />
+        <Picker.Item label="Solana (SOL)" value="SOL" />
+        <Picker.Item label="Dogecoin (DOGE)" value="DOGE" />
+      </Picker>
+
+      <Button title="Cotizar" onPress={cotizar} />
+
+      {mensaje !== "" && <Text>{mensaje}</Text>}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  formulario: {
-    padding: 20,
-    backgroundColor: '#fff',
-  },
-  campo: {
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 6,
-    color: '#333',
-  },
-  picker: {
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 6,
-    paddingHorizontal: 10,
-    color: '#333',
-  },
-  btnCotizar: {
-    marginTop: 8,
-    backgroundColor: '#007AFF',
-    paddingVertical: 12,
-    borderRadius: 6,
-    alignItems: 'center',
-  },
-  btnText: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 16,
-  },
-  mensaje: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#28a745',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-});
